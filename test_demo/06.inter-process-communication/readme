@@ -1,0 +1,16 @@
+把shm.cpp制作成静态库libshm，命令如下
+
+g++ -c shm.cpp //生成shm.o链接文件
+
+ar cr libshm.a shm.o //生成静态库
+
+编译：g++ -o shm main.cpp -L. -lshm
+
+然后在pro工程文件中加入LIBS += -L ./ -lshm这样qt就能加载非官方的静态库了
+
+
+g++ -c msg.cpp 
+ar cr libmsg.a msg.o
+g++ -o test test.c -L. -lshm_lib
+g++ -o test test.c -L. -lshm_lib -lmsg
+
