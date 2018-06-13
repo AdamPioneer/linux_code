@@ -1,0 +1,2 @@
+export CC=/home/ti_linux/ti-processor-sdk-linux-am57xx-evm-04.02.00.09/linux-devkit/sysroots/x86_64-arago-linux/usr/bin/arm-linux-gnueabihf-gcc
+$CC hello_word.c -o a.out

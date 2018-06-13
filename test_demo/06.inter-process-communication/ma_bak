@@ -1,0 +1,27 @@
+DIR_OBJ = ./
+DIR_SRC = ./  
+  
+SRC = $(wildcard ${DIR_SRC}/server/*.c ${DIR_SRC}/client/*.c)  
+OBJ = $(patsubst %.c, ${DIR_OBJ}/%.o, $(notdir $(SRC)))   
+INC = $(patsubst %, -I%, $(shell find . -name '[a-zA-Z0-9]*'.h))  
+  
+BIN_TARGET = main  
+  
+CC = gcc  
+CFLAGS = -g -Wall $(INC)  
+  
+${BIN_TARGET}: ${OBJ}  
+    $(CC) $(OBJ) -o $@  
+  
+${DIR_OBJ}/%.o: ${DIR_SRC}/server/%.c  
+    $(CC) $(CFLAGS) -c $< -o $@  
+  
+${DIR_OBJ}/%.o: ${DIR_SRC}/client/%.c   
+    $(CC) $(CFLAGS) -c $< -o $@  
+  
+# 防止命名冲突例如有名为clean的文件  
+.PHONY:clean  
+clean:  
+    find ${DIR_OBJ} -name *.o -exec rm -rf {} \;  
+
+
