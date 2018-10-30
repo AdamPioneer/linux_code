@@ -1,0 +1,14 @@
+OBJS =  test2.o  
+CC = gcc  
+CFLAGS = -c  
+  
+all:$(OBJS)  
+	$(CC) -o a.out  $(OBJS) -lpthread 
+test:
+	$(CC) $(CFLAGS) test.c  -lpthread
+	
+ 
+.PHONY:clean  
+clean:  
+	rm -rf *.o a.out
+	@echo "Clean done!"
